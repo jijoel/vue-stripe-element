@@ -1,0 +1,17 @@
+{
+    "name": "vue-stripe-element",
+    "version": "0.1.0",
+    "description": "stripe-element component for vue",
+    "author": "Joel Hatch <jijoel@yahoo.com>",
+    "license": "MIT",
+    "main": "src/scripts/stripe.js",
+    "dependencies": {
+        "simple-load-script": "^1.0.2"
+    },
+    "peerDependencies": {
+        "vue": "^2.4"
+    },
+    "moduleDirectories": [
+      "node_modules"
+    ]
+}
