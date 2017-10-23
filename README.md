@@ -1,6 +1,6 @@
 Vue Stripe Element
 =====================
-This package contains a &gt;stripe-element&lt; component for Vue projects. It works best with the vuetify library.
+This package contains a &lt;stripe-element&gt; component for Vue projects. It works best with the [vuetify](https://vuetifyjs.com/) library.
 
 
 Installation
@@ -8,6 +8,10 @@ Installation
 Enter this in dependencies in your package.json file:
 
     "vue-stripe-element": "jijoel/vue-stripe-element#master",
+    
+or:
+
+    yarn add jijoel/vue-stripe-element#master
 
 
 Usage
@@ -65,7 +69,7 @@ You can load the stripe token from your main form, like this:
 stripe-payment-form mixin
 ---------------------------
 
-If you would like, and you are using the vue-message-helper package and vee-validate, you can also include a stripe-payment-form mixin which will automatically validate your form with vee-validate, post the credit data to Stripe, and then serialize and post your form data to your server (to the specified uri). To do this:
+If you would like, and you are using the [vue-message-helper](https://github.com/jijoel/vue-message-helper) package and [vee-validate](https://github.com/baianat/vee-validate), you can also include a stripe-payment-form mixin which will automatically validate your form with vee-validate, post the credit data to Stripe, and then serialize and post your form data to your server (to the specified uri). To do this:
 
     import StripeForm from 'vue-stripe-element/src/mixins/stripe-payment-form'
 
