@@ -48,23 +48,7 @@ You can load the stripe token from your main form, like this:
 
     methods: {
 
-      submit() {
-        // Run form validation with vee-validate:
-        this.$validator.validateAll().then((result) => {
-          if (! result)  { // Javascript validation failed
-            this.setStatus('validation')
-            return this.scrollToTop()
-          }
-
-          this.getPaymentToken()
-          .then(() => this.postFormData())
-        })
-      },
-
       getPaymentToken() {
-        this.setSnackbar('pending','Sending credit card data to stripe')
-        this.setStatus('pending','Sending credit card data to stripe')
-
         return new Promise((resolve, reject) => {
           getPaymentToken()
           .then((response) => {
@@ -72,9 +56,43 @@ You can load the stripe token from your main form, like this:
             resolve()
           })
           .catch((error) => {
-            this.setSnackbar('error', error.message)
-            this.setStatus('error')
+            // do error things
           })
         })
       },
+
+
+stripe-payment-form mixin
+---------------------------
+
+If you would like, and you are using the vue-message-helper package and vee-validate, you can also include a stripe-payment-form mixin which will automatically validate your form with vee-validate, post the credit data to Stripe, and then serialize and post your form data to your server (to the specified uri). To do this:
+
+    import StripeForm from 'vue-stripe-element/src/mixins/stripe-payment-form'
+
+    mixins: [ StripeForm ],
+
+    data() {
+      return {
+        uri: '/path/to/post',
+      }
+    },
+
+In your template, the submit button will look something like this:
+
+    <v-btn color="primary"
+      @click="submit"
+      :loading="loading"
+      :disabled="loading || errors.any()"
+    >
+      Submit
+    </v-btn>
+
+If there are problems, an error message will be shown. Otherwise, you can handle the response:
+
+    handleResponse(response) {
+      this.setStatus('success')
+      this.setSnackbar('success', 'Your data has been sent')
+
+      console.log('response', response)
+    },
 
